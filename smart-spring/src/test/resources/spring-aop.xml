@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop            
+           http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<!-- 要扫描的包 -->
+	<context:component-scan base-package="org.smart4j.framework.invocation"></context:component-scan>
+	<!-- 配置一个代理 -->
+	<!-- <bean id="helloProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="interfaces" value="org.smart4j.framework.invocation.Hello"></property>
+		<property name="target" ref="helloImpl"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>interceptorProxy</value>
+				<value>errorAdvice</value>
+			</list>
+		</property>
+		
+		<property name="interfaces" value="org.smart4j.framework.invocation.Apology"></property>
+		<property name="target" ref="apologyImpl"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>helloIntroAdvice</value>
+			</list>
+		</property>
+		<property name="proxyTargetClass" value="true"></property>
+	</bean> -->
+	<!-- <bean id="helloAdvicer" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="interceptorProxy"></property>
+		<property name="pattern" value="org.smart4j.framework.invocation.HelloImpl.good.*"></property>
+	</bean>
+	
+	<bean id="helloProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		切面
+		<property name="interceptorNames" value="helloAdvicer"></property>
+		目標類
+		<property name="target" ref="helloImpl"></property>
+		類代理
+		<property name="proxyTargetClass" value="true"></property>
+	</bean> -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames" value="*Impl"></property>
+		<property name="interceptorNames" value="interceptorProxy"></property>
+		<property name="optimize" value="true"></property>
+	</bean> -->
+	
+	
+	<!-- <bean id="helloAdvicer" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="interceptorProxy"></property>
+		<property name="pattern" value="org.smart4j.framework.invocation.HelloImpl.good.*"></property>
+	</bean>
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+		<property name="optimize" value="true"></property>
+	</bean> -->
+	<!-- 自动为切面方法中匹配的方法所在的类生成代理对象。 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+</beans>           
